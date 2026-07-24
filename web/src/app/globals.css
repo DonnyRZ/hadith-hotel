@@ -200,3 +200,162 @@ body {
 .scroll-cue-arrows {
   animation: scroll-arrows 1.8s ease-in-out infinite;
 }
+
+/* Soft opening — top marquee strip */
+:root {
+  --soft-opening-strip: 2.15rem;
+  --soft-opening-h: 0px;
+}
+
+body.has-soft-opening {
+  --soft-opening-h: var(--soft-opening-strip);
+  padding-top: var(--soft-opening-h);
+}
+
+/* Offset fixed header below the strip (Header uses Tailwind top-0) */
+body.has-soft-opening header.fixed {
+  top: var(--soft-opening-h);
+}
+
+.soft-opening-banner {
+  position: fixed;
+  z-index: 45;
+  inset-inline: 0;
+  top: 0;
+  height: var(--soft-opening-strip);
+  display: flex;
+  align-items: stretch;
+  pointer-events: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--brass-light) 42%, transparent);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--night) 96%, var(--brass)) 0%,
+      color-mix(in srgb, var(--night) 90%, var(--lapis)) 55%,
+      color-mix(in srgb, var(--night) 96%, var(--brass)) 100%
+    );
+  box-shadow: inset 0 -1px 0 rgba(184, 154, 98, 0.18);
+}
+
+.soft-opening-banner__viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 4%,
+    #000 92%,
+    transparent 100%
+  );
+}
+
+.soft-opening-banner__static {
+  display: none;
+  margin: 0;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 2.5rem 2.75rem;
+  color: var(--paper);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.soft-opening-banner__marquee {
+  height: 100%;
+  overflow: hidden;
+}
+
+.soft-opening-banner__track {
+  display: flex;
+  width: max-content;
+  height: 100%;
+  align-items: center;
+  animation: soft-opening-marquee 24s linear infinite;
+  will-change: transform;
+}
+
+.soft-opening-banner:hover .soft-opening-banner__track {
+  animation-play-state: paused;
+}
+
+.soft-opening-banner__segment {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 1.15rem;
+  padding-inline: 1.35rem;
+}
+
+.soft-opening-banner__rule {
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  flex: 0 0 auto;
+  background: color-mix(in srgb, var(--brass-light) 75%, transparent);
+}
+
+.soft-opening-banner__text {
+  color: var(--paper);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.soft-opening-banner__dismiss {
+  pointer-events: auto;
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  width: 2.15rem;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid color-mix(in srgb, var(--brass-light) 28%, transparent);
+  background: color-mix(in srgb, var(--night) 55%, transparent);
+  color: color-mix(in srgb, var(--paper) 72%, var(--brass-light));
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.25s ease, background 0.25s ease;
+}
+
+.soft-opening-banner__dismiss:hover {
+  color: var(--brass-light);
+  background: color-mix(in srgb, var(--night) 75%, var(--brass));
+}
+
+@keyframes soft-opening-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soft-opening-banner__marquee {
+    display: none;
+  }
+
+  .soft-opening-banner__static {
+    display: flex;
+  }
+
+  .soft-opening-banner__track {
+    animation: none;
+  }
+
+  .soft-opening-banner__viewport {
+    mask-image: none;
+  }
+}

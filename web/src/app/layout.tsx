@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { SoftOpeningBanner } from "@/components/SoftOpeningBanner";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -39,6 +40,7 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} h-full`}
     >
       <body className="min-h-full font-sans antialiased">
+        <SoftOpeningBanner />
         <Header />
         <main>{children}</main>
         <Footer />
