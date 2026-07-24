@@ -281,7 +281,7 @@ html:has(.soft-opening-banner) header.fixed {
   width: max-content;
   height: 100%;
   align-items: center;
-  animation: soft-opening-marquee 20s linear infinite;
+  animation: soft-opening-marquee 40s linear infinite;
   will-change: transform;
 }
 
