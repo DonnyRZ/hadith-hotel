@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "hadith-soft-opening-dismissed";
 const MESSAGE = "Soft Opening September 5th 2026";
-const BODY_CLASS = "has-soft-opening";
+/** Enough copies so each half fills ≥ viewport on ultrawide */
+const COPIES_PER_GROUP = 8;
 
 export function SoftOpeningBanner() {
   const [dismissed, setDismissed] = useState(false);
@@ -19,19 +20,6 @@ export function SoftOpeningBanner() {
     setReady(true);
   }, []);
 
-  useEffect(() => {
-    if (!ready) return;
-    const root = document.body;
-    if (dismissed) {
-      root.classList.remove(BODY_CLASS);
-    } else {
-      root.classList.add(BODY_CLASS);
-    }
-    return () => {
-      root.classList.remove(BODY_CLASS);
-    };
-  }, [ready, dismissed]);
-
   if (ready && dismissed) return null;
 
   const dismiss = () => {
@@ -43,11 +31,15 @@ export function SoftOpeningBanner() {
     }
   };
 
-  const segment = (
-    <span className="soft-opening-banner__segment">
-      <span className="soft-opening-banner__rule" aria-hidden="true" />
-      <span className="soft-opening-banner__text font-display">{MESSAGE}</span>
-    </span>
+  const renderGroup = (key: string) => (
+    <div key={key} className="soft-opening-banner__group">
+      {Array.from({ length: COPIES_PER_GROUP }, (_, i) => (
+        <span key={i} className="soft-opening-banner__segment">
+          <span className="soft-opening-banner__rule" aria-hidden="true" />
+          <span className="soft-opening-banner__text font-display">{MESSAGE}</span>
+        </span>
+      ))}
+    </div>
   );
 
   return (
@@ -56,10 +48,8 @@ export function SoftOpeningBanner() {
         <p className="soft-opening-banner__static font-display">{MESSAGE}</p>
         <div className="soft-opening-banner__marquee" aria-hidden="true">
           <div className="soft-opening-banner__track">
-            {segment}
-            {segment}
-            {segment}
-            {segment}
+            {renderGroup("a")}
+            {renderGroup("b")}
           </div>
         </div>
       </div>

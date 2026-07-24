@@ -201,19 +201,23 @@ body {
   animation: scroll-arrows 1.8s ease-in-out infinite;
 }
 
-/* Soft opening — top marquee strip */
+/* Soft opening — top marquee strip (classic RTL ticker) */
 :root {
   --soft-opening-strip: 2.15rem;
   --soft-opening-h: 0px;
 }
 
-body.has-soft-opening {
+/* FOUC-safe offset when banner is in the DOM (no body class from JS) */
+html:has(.soft-opening-banner) {
   --soft-opening-h: var(--soft-opening-strip);
+}
+
+html:has(.soft-opening-banner) body {
   padding-top: var(--soft-opening-h);
 }
 
 /* Offset fixed header below the strip (Header uses Tailwind top-0) */
-body.has-soft-opening header.fixed {
+html:has(.soft-opening-banner) header.fixed {
   top: var(--soft-opening-h);
 }
 
@@ -269,6 +273,7 @@ body.has-soft-opening header.fixed {
 .soft-opening-banner__marquee {
   height: 100%;
   overflow: hidden;
+  container-type: inline-size;
 }
 
 .soft-opening-banner__track {
@@ -276,7 +281,7 @@ body.has-soft-opening header.fixed {
   width: max-content;
   height: 100%;
   align-items: center;
-  animation: soft-opening-marquee 24s linear infinite;
+  animation: soft-opening-marquee 20s linear infinite;
   will-change: transform;
 }
 
@@ -284,12 +289,20 @@ body.has-soft-opening header.fixed {
   animation-play-state: paused;
 }
 
+/* Each half ≥ strip width so -50% is a full cross-screen sweep */
+.soft-opening-banner__group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-width: 100cqw;
+}
+
 .soft-opening-banner__segment {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
   gap: 1.15rem;
-  padding-inline: 1.35rem;
+  padding-inline: 1.75rem;
 }
 
 .soft-opening-banner__rule {
