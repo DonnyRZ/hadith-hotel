@@ -15,7 +15,7 @@ export default function DiningPage() {
       {/* —— Hero: restaurant photo — distinct layout from Home —— */}
       <section className="relative flex min-h-[92svh] items-end overflow-hidden bg-night pt-[4.5rem]">
         <Image
-          src="/images/restaurant.jpeg"
+          src="/images/restaurant-v2.jpeg"
           alt="The Restaurant at HADITH Hotel"
           fill
           priority
@@ -71,7 +71,7 @@ export default function DiningPage() {
           <Reveal>
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="/images/restaurant-detail-2.jpeg"
+                src="/images/restaurant-detail-2-v2.jpeg"
                 alt="Formal dining setup at HADITH Hotel Restaurant"
                 fill
                 className="object-cover"

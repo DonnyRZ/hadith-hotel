@@ -158,7 +158,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[1600px] items-stretch lg:grid-cols-2">
           <Reveal className="relative min-h-[420px] lg:min-h-[640px]">
             <Image
-              src="/images/restaurant-detail-2.jpeg"
+              src="/images/restaurant-detail-2-v2.jpeg"
               alt="The Restaurant at HADITH Hotel"
               fill
               className="object-cover"
