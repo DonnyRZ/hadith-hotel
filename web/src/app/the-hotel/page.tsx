@@ -199,21 +199,24 @@ export default function TheHotelPage() {
             </Reveal>
           </div>
 
-          <Reveal className="mt-10 border-t border-ink/10 pt-6">
-            <p className="text-[0.7rem] tracking-[0.18em] text-brass uppercase">
-              Prayer room
-            </p>
-            <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted uppercase">
-              A quiet, dedicated space for guest worship
-            </p>
-          </Reveal>
-
           <Reveal className="mt-12 max-w-xl">
             <p className="text-[1.05rem] leading-8 text-ink-soft">
               Marble desks. A hand-painted miniature of old Samarkand fills
               the niche behind — an everyday reminder that arrival is also an
               entry into a thousand-year story. Private check-in available on
               request.
+            </p>
+          </Reveal>
+
+          <Reveal className="mt-14 border-t border-ink/10 pt-8">
+            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
+              Guest amenity
+            </p>
+            <p className="mt-3 text-[0.7rem] tracking-[0.18em] text-ink uppercase">
+              Prayer room
+            </p>
+            <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted uppercase">
+              Available for guests during their stay
             </p>
           </Reveal>
         </div>
