@@ -199,6 +199,15 @@ export default function TheHotelPage() {
             </Reveal>
           </div>
 
+          <Reveal className="mt-10 border-t border-ink/10 pt-6">
+            <p className="text-[0.7rem] tracking-[0.18em] text-brass uppercase">
+              Prayer room
+            </p>
+            <p className="mt-2 text-[0.7rem] tracking-[0.18em] text-muted uppercase">
+              A quiet, dedicated space for guest worship
+            </p>
+          </Reveal>
+
           <Reveal className="mt-12 max-w-xl">
             <p className="text-[1.05rem] leading-8 text-ink-soft">
               Marble desks. A hand-painted miniature of old Samarkand fills
