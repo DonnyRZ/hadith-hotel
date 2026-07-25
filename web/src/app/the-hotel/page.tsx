@@ -32,7 +32,7 @@ export default function TheHotelPage() {
 
         <div className="relative mx-auto aspect-[16/9] max-h-[72vh] w-full max-w-[1600px] overflow-hidden md:aspect-[21/9]">
           <Image
-            src="/images/hotel-story-hero.jpeg"
+            src="/images/hotel-story-hero.png"
             alt="HADITH Hotel at the Complex of Imam Al Bukhari, Samarkand"
             fill
             priority
@@ -71,7 +71,7 @@ export default function TheHotelPage() {
         <div className="mx-auto grid max-w-[1600px] lg:grid-cols-2">
           <Reveal className="relative min-h-[420px] lg:min-h-full">
             <Image
-              src="/images/lobby-atrium.jpeg"
+              src="/images/lobby-atrium-v2.jpeg"
               alt="Grand lobby of HADITH Hotel"
               fill
               className="object-cover"

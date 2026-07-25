@@ -86,7 +86,7 @@ export default function HomePage() {
           <Reveal delayMs={120} className="relative">
             <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/6]">
               <Image
-                src="/images/lobby-atrium.jpeg"
+                src="/images/lobby-atrium-v2.jpeg"
                 alt="Grand lobby atrium of HADITH Hotel"
                 fill
                 className="object-cover"
