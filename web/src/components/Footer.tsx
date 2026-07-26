@@ -72,6 +72,15 @@ export function Footer() {
                   (+1) 23456789
                 </a>
               </p>
+              <p>
+                <a
+                  href="/docs/hadith-hotel-profile-summary.pdf"
+                  download="HADITH-Hotel-Profile-Summary.pdf"
+                  className="transition-colors hover:text-brass-light"
+                >
+                  Hotel profile (PDF)
+                </a>
+              </p>
             </address>
           </div>
         </div>

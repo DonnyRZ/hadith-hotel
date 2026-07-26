@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeroCarousel } from "@/components/HeroCarousel";
+import { PromoVideo } from "@/components/PromoVideo";
 import { Reveal } from "@/components/Reveal";
+import { ReviewVideo } from "@/components/ReviewVideo";
 import { ScrollCue } from "@/components/ScrollCue";
 
 export default function HomePage() {
@@ -8,15 +11,8 @@ export default function HomePage() {
     <>
       {/* —— Hero —— */}
       <section className="relative h-[100svh] min-h-[640px] overflow-hidden bg-night">
-        <Image
-          src="/images/hero-exterior.jpg"
-          alt="HADITH Hotel façade at golden hour, Complex of Imam Al Bukhari, Samarkand"
-          fill
-          priority
-          className="object-cover object-center animate-kenburns"
-          sizes="100vw"
-        />
-        <div className="hero-gradient absolute inset-0" />
+        <HeroCarousel />
+        <div className="hero-gradient pointer-events-none absolute inset-0 z-[1]" />
 
         <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-28 pt-28 md:px-10 md:pb-32 lg:px-14 lg:pb-36">
           <div className="mx-auto w-full max-w-[1600px]">
@@ -59,8 +55,9 @@ export default function HomePage() {
         <ScrollCue />
       </section>
 
-      {/* —— Story —— */}
+      {/* —— Story sequence: Hotel · Lobby —— */}
       <section id="story" className="texture-paper overflow-hidden scroll-mt-20">
+        {/* Our Story — text left, portrait right */}
         <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2 lg:gap-20 lg:px-14">
           <Reveal>
             <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
@@ -87,16 +84,72 @@ export default function HomePage() {
             <div className="relative aspect-[4/5] overflow-hidden md:aspect-[5/6]">
               <Image
                 src="/images/lobby-atrium-v2.jpeg"
-                alt="Grand lobby atrium of HADITH Hotel"
+                alt="Exterior of HADITH Hotel at the Complex of Imam Al Bukhari"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <p className="mt-4 text-[0.7rem] tracking-[0.18em] text-muted uppercase">
+              The Hotel
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Lobby — text then image on mobile; image left, text right on desktop */}
+        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 pb-24 md:px-10 md:pb-32 lg:grid-cols-2 lg:gap-20 lg:px-14">
+          <Reveal className="relative order-2 min-w-0 lg:order-1">
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src="/images/grand-lobby.jpeg"
+                alt="Grand lobby atrium of HADITH Hotel with chandelier, staircase and marble floors"
+                fill
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+            <p className="mt-3 text-[0.65rem] tracking-[0.18em] text-muted uppercase sm:mt-4 sm:text-[0.7rem]">
               The Grand Lobby
             </p>
           </Reveal>
+
+          <Reveal delayMs={120} className="order-1 min-w-0 lg:order-2">
+            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
+              Arrival
+            </p>
+            <h2 className="font-display mt-5 text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
+              A grand lobby shaped for welcome.
+            </h2>
+            <p className="mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
+              Step inside to a generous atrium — volume, light, and the quiet
+              warmth of hospitality that marks every arrival at HADITH.
+            </p>
+          </Reveal>
+        </div>
+
+      </section>
+
+      {/* —— Film — text left, portrait video right —— */}
+      <section className="texture-paper overflow-hidden">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2 lg:gap-16 lg:px-14 xl:gap-20">
+          <Reveal>
+            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
+              Film
+            </p>
+            <h2 className="font-display mt-5 text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
+              A glimpse of life at HADITH.
+            </h2>
+            <p className="mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
+              From the Complex of Imam Al Bukhari to the quiet of our
+              interiors — a short film of the house and the hospitality that
+              awaits.
+            </p>
+          </Reveal>
+
+          {/* No Reveal wrap — avoids opacity:0 while audio still plays */}
+          <div className="relative min-w-0">
+            <PromoVideo />
+          </div>
         </div>
       </section>
 
@@ -105,7 +158,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 md:grid-cols-3 md:gap-8 md:px-10 md:py-20 lg:px-14">
           {[
             { value: "114", label: "Rooms & Suites" },
-            { value: "5★", label: "Class Rating" },
+            { value: "★★★★★", label: "Class Rating" },
             { value: "62K", label: "Sqm of Land" },
           ].map((stat, i) => (
             <Reveal key={stat.label} delayMs={i * 100}>
@@ -228,6 +281,28 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* —— Guest Voices —— */}
+      <section className="texture-paper overflow-hidden">
+        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2 lg:gap-16 lg:px-14 xl:gap-20">
+          <Reveal>
+            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
+              Guest Voices
+            </p>
+            <h2 className="font-display mt-5 text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
+              In their own words.
+            </h2>
+            <p className="mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
+              Guests share what stayed with them — the welcome, the spaces,
+              and the quiet of a stay beside the Complex of Imam Al Bukhari.
+            </p>
+          </Reveal>
+
+          <div className="relative min-w-0">
+            <ReviewVideo />
+          </div>
+        </div>
+      </section>
+
       {/* —— Closing —— */}
       <section className="relative min-h-[70svh] overflow-hidden bg-night">
         <Image
@@ -246,12 +321,24 @@ export default function HomePage() {
             <h2 className="font-display mt-6 max-w-3xl text-4xl leading-[1.1] text-white md:text-5xl lg:text-6xl">
               Every stay becomes part of a meaningful journey.
             </h2>
-            <Link
-              href="/experiences"
-              className="mt-10 inline-flex h-12 items-center bg-white px-8 text-[0.7rem] font-medium tracking-[0.22em] text-ink uppercase transition-colors hover:bg-paper"
-            >
-              Explore Experiences
-            </Link>
+            <p className="mt-6 text-sm tracking-[0.08em] text-white/70">
+              Hotel profile summary · PDF
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-5">
+              <a
+                href="/docs/hadith-hotel-profile-summary.pdf"
+                download="HADITH-Hotel-Profile-Summary.pdf"
+                className="inline-flex h-12 items-center justify-center bg-white px-8 text-[0.7rem] font-medium tracking-[0.22em] text-ink uppercase transition-colors hover:bg-paper"
+              >
+                Download Profile
+              </a>
+              <Link
+                href="/experiences"
+                className="inline-flex h-12 items-center justify-center border border-white/40 px-8 text-[0.7rem] font-medium tracking-[0.22em] text-white uppercase transition-colors hover:border-white hover:bg-white/10"
+              >
+                Explore Experiences
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

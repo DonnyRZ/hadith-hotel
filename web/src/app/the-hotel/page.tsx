@@ -72,7 +72,7 @@ export default function TheHotelPage() {
           <Reveal className="relative min-h-[420px] lg:min-h-full">
             <Image
               src="/images/lobby-atrium-v2.jpeg"
-              alt="Grand lobby of HADITH Hotel"
+              alt="Exterior of HADITH Hotel at the Complex of Imam Al Bukhari"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

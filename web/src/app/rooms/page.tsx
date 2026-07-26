@@ -43,7 +43,7 @@ export default function RoomsPage() {
           </p>
           <div className="mt-12 flex flex-wrap gap-x-10 gap-y-4 text-[0.7rem] tracking-[0.22em] text-brass-light uppercase">
             <span>114 Rooms</span>
-            <span>5★ Class</span>
+            <span>★★★★★ Class</span>
             <span>Butler on Suites</span>
           </div>
         </div>
