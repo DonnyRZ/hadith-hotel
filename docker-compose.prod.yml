@@ -1,0 +1,42 @@
+services:
+  # Legacy per-app Postgres — rollback only (profile legacy-db).
+  # Data now lives on host PostgreSQL 16 (:5432).
+  db:
+    profiles: ["legacy-db"]
+    image: postgres:16-alpine
+    container_name: hadith-hotel-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hadith
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: hadith_hotel
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - hadith_hotel_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hadith -d hadith_hotel"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    container_name: hadith-hotel-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3004:3000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DATABASE_URL: postgresql://hadith:${POSTGRES_PASSWORD}@host.docker.internal:5432/hadith_hotel?schema=public
+      NODE_ENV: production
+      VISITOR_IP_HASH_SECRET: ${VISITOR_IP_HASH_SECRET}
+      VISITOR_GEOLOOKUP_URL: ${VISITOR_GEOLOOKUP_URL:-https://ipwho.is/{ip}}
+      VISITOR_MAJOR_CITIES: ${VISITOR_MAJOR_CITIES:-}
+      VISITOR_TRUST_CLOUDFLARE_HEADERS: ${VISITOR_TRUST_CLOUDFLARE_HEADERS:-false}
+
+volumes:
+  hadith_hotel_pgdata:

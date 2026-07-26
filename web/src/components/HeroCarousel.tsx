@@ -3,40 +3,59 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const SLIDES = [
+type Slide = {
+  src: string;
+  srcMobile: string;
+  alt: string;
+  altMobile?: string;
+};
+
+const SLIDES: Slide[] = [
   {
     src: "/images/hero-exterior.jpg",
+    srcMobile: "/images/lobby-atrium-v2.jpeg",
     alt: "HADITH Hotel façade at golden hour, Complex of Imam Al Bukhari, Samarkand",
+    altMobile:
+      "HADITH Hotel illuminated at night with fountain, Complex of Imam Al Bukhari",
   },
   {
     src: "/images/grand-lobby.jpeg",
+    srcMobile: "/images/grand-lobby-portrait.jpeg",
     alt: "Grand lobby atrium of HADITH Hotel with chandelier, staircase and marble floors",
   },
   {
     src: "/images/reception.jpeg",
+    srcMobile: "/images/hero-mobile-reception.jpeg",
     alt: "Reception desk at HADITH Hotel",
   },
   {
     src: "/images/restaurant.jpeg",
+    srcMobile: "/images/hero-mobile-restaurant.jpeg",
     alt: "Restaurant dining room at HADITH Hotel",
   },
   {
     src: "/images/pool.jpeg",
+    srcMobile: "/images/hero-mobile-pool.jpeg",
     alt: "Indoor swimming pool at HADITH Hotel",
   },
   {
     src: "/images/junior-suite.jpeg",
+    srcMobile: "/images/hero-mobile-suite.jpeg",
     alt: "Junior suite accommodation at HADITH Hotel",
   },
   {
     src: "/images/bar-lounge.png",
+    srcMobile: "/images/exterior-entrance.jpeg",
     alt: "Bar and lounge at HADITH Hotel",
+    altMobile:
+      "Daytime entrance of HADITH Hotel at the Complex of Imam Al Bukhari",
   },
   {
     src: "/images/padel.png",
+    srcMobile: "/images/hero-mobile-padel.jpeg",
     alt: "Padel court experience at HADITH Hotel",
   },
-] as const;
+];
 
 const AUTOPLAY_MS = 6500;
 
@@ -107,12 +126,24 @@ export function HeroCarousel() {
                 } ${active ? "opacity-100" : "opacity-0"}`}
                 aria-hidden={!active}
               >
+                {/* Desktop / tablet landscape */}
                 <Image
                   src={slide.src}
                   alt={active ? slide.alt : ""}
                   fill
                   priority={i === 0}
-                  className="object-cover object-center"
+                  className="hidden object-cover object-center md:block"
+                  sizes="100vw"
+                />
+                {/* Mobile portrait art direction */}
+                <Image
+                  src={slide.srcMobile}
+                  alt={
+                    active ? (slide.altMobile ?? slide.alt) : ""
+                  }
+                  fill
+                  priority={i === 0}
+                  className="object-cover object-center md:hidden"
                   sizes="100vw"
                 />
               </div>

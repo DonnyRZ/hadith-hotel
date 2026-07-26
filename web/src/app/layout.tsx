@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SoftOpeningBanner } from "@/components/SoftOpeningBanner";
+import { VisitorTracker } from "@/components/VisitorTracker";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -40,6 +41,7 @@ export default function RootLayout({
       className={`${display.variable} ${sans.variable} h-full`}
     >
       <body className="min-h-full font-sans antialiased">
+        <VisitorTracker />
         <SoftOpeningBanner />
         <Header />
         <main>{children}</main>

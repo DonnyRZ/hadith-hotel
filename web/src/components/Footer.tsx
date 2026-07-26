@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProfileDownloadLink } from "@/components/ProfileDownloadLink";
 
 const footerNav = [
   { href: "/the-hotel", label: "The Hotel" },
@@ -73,13 +74,9 @@ export function Footer() {
                 </a>
               </p>
               <p>
-                <a
-                  href="/docs/hadith-hotel-profile-summary.pdf"
-                  download="HADITH-Hotel-Profile-Summary.pdf"
-                  className="transition-colors hover:text-brass-light"
-                >
+                <ProfileDownloadLink className="transition-colors hover:text-brass-light">
                   Hotel profile (PDF)
-                </a>
+                </ProfileDownloadLink>
               </p>
             </address>
           </div>

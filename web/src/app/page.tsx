@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { HeroCarousel } from "@/components/HeroCarousel";
+import { ProfileDownloadLink } from "@/components/ProfileDownloadLink";
 import { PromoVideo } from "@/components/PromoVideo";
 import { Reveal } from "@/components/Reveal";
 import { ReviewVideo } from "@/components/ReviewVideo";
 import { ScrollCue } from "@/components/ScrollCue";
+import { SiteMetrics } from "@/components/SiteMetrics";
 
 export default function HomePage() {
   return (
@@ -30,9 +32,9 @@ export default function HomePage() {
             <div className="animate-line-grow mt-7 h-px w-24 bg-brass-light/80" />
 
             <p className="animate-fade-up delay-2 mt-7 max-w-xl text-base leading-relaxed text-white/85 md:text-lg md:leading-8">
-              A landmark of culture, comfort and conviction — where
-              Samarkand&apos;s heritage meets the warmth of Indonesian
-              hospitality.
+              Some hotels sit beside landmarks.
+              <br />
+              Hadith Hotel stands inside a legacy of Imam Al Bukhari.
             </p>
 
             <div className="animate-fade-up delay-3 mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
@@ -313,25 +315,25 @@ export default function HomePage() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-night/55" />
-        <div className="relative z-10 flex min-h-[70svh] flex-col items-center justify-center px-5 text-center">
+        <div className="relative z-10 flex min-h-[70svh] flex-col items-center justify-center px-5 py-24 text-center md:px-10 md:py-32 lg:px-14">
           <Reveal>
             <p className="text-[0.65rem] font-medium tracking-[0.35em] text-brass-light uppercase">
               Until we welcome you
             </p>
-            <h2 className="font-display mt-6 max-w-3xl text-4xl leading-[1.1] text-white md:text-5xl lg:text-6xl">
-              Every stay becomes part of a meaningful journey.
+            <h2 className="font-display mt-6 max-w-4xl text-3xl leading-[1.15] text-white md:text-4xl lg:text-5xl">
+              Some hotels give you somewhere to stay.
+              <span className="mt-3 block">
+                Hadith Hotel gives you peace worth remembering at the
+                Complex of Imam Al Bukhari.
+              </span>
             </h2>
             <p className="mt-6 text-sm tracking-[0.08em] text-white/70">
               Hotel profile summary · PDF
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-5">
-              <a
-                href="/docs/hadith-hotel-profile-summary.pdf"
-                download="HADITH-Hotel-Profile-Summary.pdf"
-                className="inline-flex h-12 items-center justify-center bg-white px-8 text-[0.7rem] font-medium tracking-[0.22em] text-ink uppercase transition-colors hover:bg-paper"
-              >
+              <ProfileDownloadLink className="inline-flex h-12 items-center justify-center bg-white px-8 text-[0.7rem] font-medium tracking-[0.22em] text-ink uppercase transition-colors hover:bg-paper">
                 Download Profile
-              </a>
+              </ProfileDownloadLink>
               <Link
                 href="/experiences"
                 className="inline-flex h-12 items-center justify-center border border-white/40 px-8 text-[0.7rem] font-medium tracking-[0.22em] text-white uppercase transition-colors hover:border-white hover:bg-white/10"
@@ -342,6 +344,8 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
+
+      <SiteMetrics />
     </>
   );
 }
