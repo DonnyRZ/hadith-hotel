@@ -4,7 +4,7 @@ import { HeroCarousel } from "@/components/HeroCarousel";
 import { ProfileDownloadLink } from "@/components/ProfileDownloadLink";
 import { PromoVideo } from "@/components/PromoVideo";
 import { Reveal } from "@/components/Reveal";
-import { ReviewVideo } from "@/components/ReviewVideo";
+import { ReviewVideos } from "@/components/ReviewVideos";
 import { ScrollCue } from "@/components/ScrollCue";
 import { SiteMetrics } from "@/components/SiteMetrics";
 
@@ -74,12 +74,6 @@ export default function HomePage() {
               hospitality — a contemporary sanctuary honouring a scholar whose
               influence transcends generations.
             </p>
-            <Link
-              href="/the-hotel"
-              className="nav-link mt-10 inline-block text-ink"
-            >
-              The Hotel
-            </Link>
           </Reveal>
 
           <Reveal delayMs={120} className="relative">
@@ -92,9 +86,6 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <p className="mt-4 text-[0.7rem] tracking-[0.18em] text-muted uppercase">
-              The Hotel
-            </p>
           </Reveal>
         </div>
 
@@ -110,9 +101,6 @@ export default function HomePage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <p className="mt-3 text-[0.65rem] tracking-[0.18em] text-muted uppercase sm:mt-4 sm:text-[0.7rem]">
-              The Grand Lobby
-            </p>
           </Reveal>
 
           <Reveal delayMs={120} className="order-1 min-w-0 lg:order-2">
@@ -131,17 +119,14 @@ export default function HomePage() {
 
       </section>
 
-      {/* —— Film — text left, portrait video right —— */}
+      {/* —— Film — text above, portrait video below —— */}
       <section className="texture-paper overflow-hidden">
-        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2 lg:gap-16 lg:px-14 xl:gap-20">
-          <Reveal>
-            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
-              Film
-            </p>
-            <h2 className="font-display mt-5 text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center gap-12 px-5 py-24 md:gap-14 md:px-10 md:py-32 lg:px-14">
+          <Reveal className="max-w-2xl text-center">
+            <h2 className="font-display text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
               A glimpse of life at HADITH.
             </h2>
-            <p className="mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
+            <p className="mx-auto mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
               From the Complex of Imam Al Bukhari to the quiet of our
               interiors — a short film of the house and the hospitality that
               awaits.
@@ -149,7 +134,7 @@ export default function HomePage() {
           </Reveal>
 
           {/* No Reveal wrap — avoids opacity:0 while audio still plays */}
-          <div className="relative min-w-0">
+          <div className="relative w-full max-w-md min-w-0">
             <PromoVideo />
           </div>
         </div>
@@ -157,13 +142,12 @@ export default function HomePage() {
 
       {/* —— Numbers —— */}
       <section className="bg-lapis-deep text-paper">
-        <div className="mx-auto grid max-w-[1600px] gap-10 px-5 py-16 md:grid-cols-3 md:gap-8 md:px-10 md:py-20 lg:px-14">
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center justify-center gap-12 px-5 py-16 sm:flex-row sm:gap-20 md:gap-28 md:px-10 md:py-20 lg:px-14">
           {[
             { value: "114", label: "Rooms & Suites" },
             { value: "★★★★★", label: "Class Rating" },
-            { value: "62K", label: "Sqm of Land" },
           ].map((stat, i) => (
-            <Reveal key={stat.label} delayMs={i * 100}>
+            <Reveal key={stat.label} delayMs={i * 100} className="text-center">
               <p className="font-display text-5xl tracking-wide md:text-6xl">
                 {stat.value}
               </p>
@@ -283,24 +267,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* —— Guest Voices —— */}
+      {/* —— Reviews — three portrait testimonials —— */}
       <section className="texture-paper overflow-hidden">
-        <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-2 lg:gap-16 lg:px-14 xl:gap-20">
-          <Reveal>
-            <p className="text-[0.65rem] font-medium tracking-[0.32em] text-brass uppercase">
-              Guest Voices
-            </p>
-            <h2 className="font-display mt-5 text-4xl leading-[1.1] text-ink md:text-5xl lg:text-[3.4rem]">
-              In their own words.
+        <div className="mx-auto flex max-w-[1600px] flex-col items-center gap-10 px-5 py-24 md:gap-14 md:px-10 md:py-32 lg:px-14">
+          <Reveal className="text-center">
+            <h2 className="font-display text-4xl leading-[1.1] tracking-wide text-ink md:text-5xl lg:text-[3.4rem]">
+              Reviews
             </h2>
-            <p className="mt-8 max-w-lg text-[1.05rem] leading-8 text-ink-soft">
-              Guests share what stayed with them — the welcome, the spaces,
-              and the quiet of a stay beside the Complex of Imam Al Bukhari.
-            </p>
           </Reveal>
 
-          <div className="relative min-w-0">
-            <ReviewVideo />
+          <div className="w-full min-w-0">
+            <ReviewVideos />
           </div>
         </div>
       </section>
